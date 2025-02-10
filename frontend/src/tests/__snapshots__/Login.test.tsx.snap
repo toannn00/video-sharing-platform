@@ -14,6 +14,7 @@ exports[`Login > should render and match the snapshot 1`] = `
   style={
     {
       "maxWidth": 600,
+      "padding": 0,
       "width": "100%",
     }
   }
@@ -53,6 +54,11 @@ exports[`Login > should render and match the snapshot 1`] = `
       >
         <Input
           placeholder="Email"
+          style={
+            {
+              "fontSize": "16px",
+            }
+          }
           type="email"
         />
       </InternalFormItem>
@@ -79,6 +85,11 @@ exports[`Login > should render and match the snapshot 1`] = `
       >
         <Input.Password
           placeholder="Password"
+          style={
+            {
+              "fontSize": "16px",
+            }
+          }
         />
       </InternalFormItem>
     </Col>
