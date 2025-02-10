@@ -58,13 +58,17 @@ export const Login = () => {
     <Form
       name="login-form"
       wrapperCol={{ span: 24 }}
-      style={{ width: "100%", maxWidth: isMobile ? "100%" : 600 }}
+      style={{
+        width: "100%",
+        maxWidth: isMobile ? "100%" : 600,
+        padding: isMobile ? "0 16px" : 0,
+      }}
       initialValues={{ remember: true }}
       onFinish={handleLogin}
       autoComplete="off"
       layout={isMobile ? "vertical" : "horizontal"}
     >
-      <Row gutter={[8, isMobile ? 8 : 0]}>
+      <Row gutter={[isMobile ? 0 : 8, isMobile ? 8 : 0]}>
         <Col span={getColumnSpans()}>
           <Form.Item
             name="email"
@@ -73,7 +77,11 @@ export const Login = () => {
             ]}
             style={{ marginBottom: 0 }}
           >
-            <Input placeholder="Email" type="email" />
+            <Input
+              placeholder="Email"
+              type="email"
+              style={{ fontSize: "16px" }}
+            />
           </Form.Item>
         </Col>
         <Col span={getColumnSpans()}>
@@ -88,7 +96,10 @@ export const Login = () => {
             ]}
             style={{ marginBottom: 0 }}
           >
-            <Input.Password placeholder="Password" />
+            <Input.Password
+              placeholder="Password"
+              style={{ fontSize: "16px" }}
+            />
           </Form.Item>
         </Col>
         <Col span={getButtonSpan()}>
