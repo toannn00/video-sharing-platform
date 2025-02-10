@@ -28,4 +28,4 @@ jobs:
         working-directory: ./backend
         run: yarn test:e2e
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_ATLAS_URI }}
+          DB_URI: ${{ secrets.MONGODB_ATLAS_URI }}
