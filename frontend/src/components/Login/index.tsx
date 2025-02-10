@@ -4,10 +4,12 @@ import User from "../../types/user.type";
 import { useState } from "react";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export const Login = () => {
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const handleLogout = () => {
     authService.logout();
@@ -26,37 +28,55 @@ export const Login = () => {
     }
   };
 
-  const onFinish = (values: User) => {
-    handleLogin(values);
+  const getColumnSpans = () => {
+    return isMobile ? 24 : 9;
   };
 
-  return email ? (
-    <div style={{ display: "flex" }}>
-      <UserBar email={email} />
-      <Button danger onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
-  ) : (
+  const getButtonSpan = () => {
+    return isMobile ? 24 : 6;
+  };
+
+  if (email) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? "10px" : "0",
+          alignItems: isMobile ? "stretch" : "center",
+        }}
+      >
+        <UserBar email={email} />
+        <Button danger onClick={handleLogout} block={isMobile}>
+          Logout
+        </Button>
+      </div>
+    );
+  }
+
+  return (
     <Form
       name="login-form"
       wrapperCol={{ span: 24 }}
-      style={{ maxWidth: 600 }}
+      style={{ width: "100%", maxWidth: isMobile ? "100%" : 600 }}
       initialValues={{ remember: true }}
-      onFinish={onFinish}
+      onFinish={handleLogin}
       autoComplete="off"
+      layout={isMobile ? "vertical" : "horizontal"}
     >
-      <Row gutter={8}>
-        <Col span={9}>
+      <Row gutter={[8, isMobile ? 8 : 0]}>
+        <Col span={getColumnSpans()}>
           <Form.Item
             name="email"
-            rules={[{ required: true, message: "Enter a valid email" }]}
+            rules={[
+              { required: true, message: "Enter a valid email", type: "email" },
+            ]}
             style={{ marginBottom: 0 }}
           >
             <Input placeholder="Email" type="email" />
           </Form.Item>
         </Col>
-        <Col span={9}>
+        <Col span={getColumnSpans()}>
           <Form.Item
             name="password"
             rules={[
@@ -71,10 +91,13 @@ export const Login = () => {
             <Input.Password placeholder="Password" />
           </Form.Item>
         </Col>
-        <Col span={6}>
-          <Form.Item wrapperCol={{ span: 24 }} style={{ marginBottom: 0 }}>
+        <Col span={getButtonSpan()}>
+          <Form.Item style={{ marginBottom: 0 }}>
             <Button
-              style={{ backgroundColor: "black" }}
+              style={{
+                backgroundColor: "black",
+                width: isMobile ? "100%" : "auto",
+              }}
               type="primary"
               htmlType="submit"
             >
