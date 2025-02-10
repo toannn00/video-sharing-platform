@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > should render and match the snapshot 1`] = `
+<React.Fragment>
+  <Row
+    align="middle"
+    gutter={
+      [
+        0,
+        0,
+      ]
+    }
+    style={
+      {
+        "flexDirection": "row",
+        "padding": "16px 0",
+      }
+    }
+  >
+    <Col
+      md={
+        {
+          "offset": 3,
+          "span": 9,
+        }
+      }
+      style={
+        {
+          "display": "flex",
+          "justifyContent": "flex-start",
+        }
+      }
+      xs={24}
+    >
+      <Link
+        to="/"
+      >
+        <div
+          style={
+            {
+              "display": "flex",
+            }
+          }
+        >
+          <LogoIcon />
+        </div>
+      </Link>
+    </Col>
+    <Col
+      md={
+        {
+          "offset": 1,
+          "span": 9,
+        }
+      }
+      style={
+        {
+          "display": "flex",
+          "justifyContent": "flex-start",
+        }
+      }
+      xs={24}
+    >
+      <Login />
+    </Col>
+  </Row>
+  <Divider
+    style={
+      {
+        "margin": "5px 0 0 0",
+      }
+    }
+  />
+</React.Fragment>
+`;

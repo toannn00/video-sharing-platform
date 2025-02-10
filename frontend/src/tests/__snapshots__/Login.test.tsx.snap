@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Login > should render and match the snapshot 1`] = `
+<Form
+  autoComplete="off"
+  initialValues={
+    {
+      "remember": true,
+    }
+  }
+  layout="horizontal"
+  name="login-form"
+  onFinish={[Function]}
+  style={
+    {
+      "maxWidth": 600,
+      "width": "100%",
+    }
+  }
+  wrapperCol={
+    {
+      "span": 24,
+    }
+  }
+>
+  <Row
+    gutter={
+      [
+        8,
+        0,
+      ]
+    }
+  >
+    <Col
+      span={9}
+    >
+      <InternalFormItem
+        name="email"
+        rules={
+          [
+            {
+              "message": "Enter a valid email",
+              "required": true,
+              "type": "email",
+            },
+          ]
+        }
+        style={
+          {
+            "marginBottom": 0,
+          }
+        }
+      >
+        <Input
+          placeholder="Email"
+          type="email"
+        />
+      </InternalFormItem>
+    </Col>
+    <Col
+      span={9}
+    >
+      <InternalFormItem
+        name="password"
+        rules={
+          [
+            {
+              "message": "Enter at least 8 characters",
+              "min": 8,
+              "required": true,
+            },
+          ]
+        }
+        style={
+          {
+            "marginBottom": 0,
+          }
+        }
+      >
+        <Input.Password
+          placeholder="Password"
+        />
+      </InternalFormItem>
+    </Col>
+    <Col
+      span={6}
+    >
+      <InternalFormItem
+        style={
+          {
+            "marginBottom": 0,
+          }
+        }
+      >
+        <Button
+          htmlType="submit"
+          style={
+            {
+              "backgroundColor": "black",
+              "width": "auto",
+            }
+          }
+          type="primary"
+        >
+          Login/Register
+        </Button>
+      </InternalFormItem>
+    </Col>
+  </Row>
+</Form>
+`;
