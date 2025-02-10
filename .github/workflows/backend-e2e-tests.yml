@@ -10,12 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      mongodb:
-        image: mongo:latest
-        ports:
-          - 27017:27017
-
     steps:
       - uses: actions/checkout@v3
 
@@ -24,11 +18,14 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Install dependencies
+        working-directory: ./backend
         run: npm ci
 
       - name: Run E2E tests
+        working-directory: ./backend
         run: npm run test:e2e
         env:
           MONGODB_URI: ${{ secrets.MONGODB_ATLAS_URI }}
