@@ -165,5 +165,19 @@ describe('VideoController (e2e)', () => {
           expect(res.body.message).toContain('Error');
         });
     });
+
+    it('should fail when url is not a youtube link', () => {
+      const invalidVideo = { ...mockVideo, url: 'https://invalid-url.com' };
+      return request(app.getHttpServer())
+        .post('/video')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send(invalidVideo)
+        .expect(400)
+        .expect((res) => {
+          expect(res.body.message).toContain(
+            'URL must be a valid YouTube link',
+          );
+        });
+    });
   });
 });
