@@ -1,0 +1,10 @@
+services:
+  vite_docker:
+    build: .
+    container_name: frontend
+    ports:
+      - 5173:5173
+    command: npm run dev
+    volumes:
+      - .:/app
+      - /app/node_modules
