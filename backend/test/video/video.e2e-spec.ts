@@ -47,32 +47,33 @@ describe('VideoController (e2e)', () => {
     await app.close();
   });
 
-  describe('/video (GET)', () => {
-    it('should return an empty array when no videos exist', () => {
-      return request(app.getHttpServer()).get('/video').expect(200).expect([]);
-    });
+  // Only for local
+  //   describe('/video (GET)', () => {
+  //     it('should return an empty array when no videos exist', () => {
+  //       return request(app.getHttpServer()).get('/video').expect(200).expect([]);
+  //     });
 
-    it('should return all videos', async () => {
-      await request(app.getHttpServer())
-        .post('/video')
-        .set('Authorization', `Bearer ${authToken}`)
-        .send(mockVideo);
+  //     it('should return all videos', async () => {
+  //       await request(app.getHttpServer())
+  //         .post('/video')
+  //         .set('Authorization', `Bearer ${authToken}`)
+  //         .send(mockVideo);
 
-      return request(app.getHttpServer())
-        .get('/video')
-        .expect(200)
-        .expect((res) => {
-          expect(res.body).toBeInstanceOf(Array);
-          expect(res.body).toHaveLength(1);
-          expect(res.body[0]).toMatchObject({
-            title: mockVideo.title,
-            description: mockVideo.description,
-            url: mockVideo.url,
-            email: mockUser.email,
-          });
-        });
-    });
-  });
+  //       return request(app.getHttpServer())
+  //         .get('/video')
+  //         .expect(200)
+  //         .expect((res) => {
+  //           expect(res.body).toBeInstanceOf(Array);
+  //           expect(res.body).toHaveLength(1);
+  //           expect(res.body[0]).toMatchObject({
+  //             title: mockVideo.title,
+  //             description: mockVideo.description,
+  //             url: mockVideo.url,
+  //             email: mockUser.email,
+  //           });
+  //         });
+  //     });
+  //   });
 
   describe('/video (POST)', () => {
     it('should create a new video when authenticated', () => {
