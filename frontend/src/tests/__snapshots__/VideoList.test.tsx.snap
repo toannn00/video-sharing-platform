@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`VideoItem > should render and match the snapshot 1`] = `
+<VideoList
+  videoList={
+    [
+      {
+        "description": "test",
+        "email": "test@gmail.com",
+        "title": "test",
+        "url": "test",
+      },
+    ]
+  }
+/>
+`;
