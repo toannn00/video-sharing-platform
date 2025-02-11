@@ -16,7 +16,7 @@ export const VideoItem = ({ video }: { video: Video }) => {
       <Row gutter={10} style={{ padding: 16 }} data-testid="movie-item">
         <Col span={24}>
           <div style={{ textAlign: "center", marginBottom: 16 }}>
-            <ReactPlayer width="100%" height="240" url={url} />
+            <ReactPlayer width="100%" height={240} url={url} />
           </div>
         </Col>
         <Col span={24}>

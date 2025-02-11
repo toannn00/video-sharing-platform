@@ -5,10 +5,11 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import videoService from "../../services/video.service";
 import Video from "../../types/video.type";
 import { useMediaQuery } from "react-responsive";
+import { io, Socket } from "socket.io-client";
 
 export const Post = () => {
   const [form] = Form.useForm();
@@ -16,12 +17,25 @@ export const Post = () => {
   const [token] = useState(localStorage.getItem("token") || "");
   const [loading, setLoading] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [socket, setSocket] = useState<Socket>();
+
+  const triggerMessage = (values: { message: string; email: string }) => {
+    socket?.emit("newVideoNotification", values);
+  };
+
+  useEffect(() => {
+    const newSocket = io(import.meta.env.VITE_API_WS_URL);
+    setSocket(newSocket);
+  }, [setSocket]);
 
   const onFinish = async (values: Video) => {
     const result = await videoService.create(values, token);
+    const email = localStorage.getItem("email") || "";
 
     if (result) {
       form.resetFields();
+      const notificationMessage = `New video ${values.title} uploaded by ${email}`;
+      triggerMessage({ message: notificationMessage, email });
       setLoading(true);
       back();
     } else {
@@ -43,10 +57,10 @@ export const Post = () => {
       name="post-form"
       labelCol={{ span: isMobile ? 24 : 8 }}
       wrapperCol={{ span: isMobile ? 24 : 16 }}
-      style={{ 
+      style={{
         width: "100%",
         maxWidth: isMobile ? "100%" : 600,
-        padding: isMobile ? "0 16px" : 0
+        padding: isMobile ? "0 16px" : 0,
       }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
@@ -82,12 +96,14 @@ export const Post = () => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 24 }}>
-        <div style={{ 
-          display: "flex", 
-          gap: 10, 
-          justifyContent: "flex-end",
-          flexDirection: isMobile ? "column" : "row"
-        }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            justifyContent: "flex-end",
+            flexDirection: isMobile ? "column" : "row",
+          }}
+        >
           <Button danger onClick={back} block={isMobile}>
             <ArrowLeftOutlined /> Back
           </Button>
