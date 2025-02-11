@@ -8,12 +8,14 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import videoService from "../../services/video.service";
 import Video from "../../types/video.type";
+import { useMediaQuery } from "react-responsive";
 
 export const Post = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem("token") || "");
   const [loading, setLoading] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const onFinish = async (values: Video) => {
     const result = await videoService.create(values, token);
@@ -39,12 +41,17 @@ export const Post = () => {
     <Form
       form={form}
       name="post-form"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
+      labelCol={{ span: isMobile ? 24 : 8 }}
+      wrapperCol={{ span: isMobile ? 24 : 16 }}
+      style={{ 
+        width: "100%",
+        maxWidth: isMobile ? "100%" : 600,
+        padding: isMobile ? "0 16px" : 0
+      }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      labelAlign="left"
+      labelAlign={isMobile ? "left" : "right"}
+      layout={isMobile ? "vertical" : "horizontal"}
     >
       <Form.Item
         label="Video Title"
@@ -75,11 +82,16 @@ export const Post = () => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 24 }}>
-        <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
-          <Button danger onClick={back}>
+        <div style={{ 
+          display: "flex", 
+          gap: 10, 
+          justifyContent: "flex-end",
+          flexDirection: isMobile ? "column" : "row"
+        }}>
+          <Button danger onClick={back} block={isMobile}>
             <ArrowLeftOutlined /> Back
           </Button>
-          <Button onClick={formClear}>
+          <Button onClick={formClear} block={isMobile}>
             <ReloadOutlined /> Clear
           </Button>
           <Button
@@ -87,6 +99,7 @@ export const Post = () => {
             htmlType="submit"
             type="primary"
             loading={loading}
+            block={isMobile}
           >
             <CloudUploadOutlined />
             Post
