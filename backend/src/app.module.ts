@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { VideoModule } from './video/video.module';
 import { AuthModule } from './auth/auth.module';
+import { NotificationGateway } from './notification/notification.gateway';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, NotificationGateway],
 })
 export class AppModule {}
