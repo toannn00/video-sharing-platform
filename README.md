@@ -235,3 +235,135 @@ vercel . --prod
 - [ReactPlayer](https://www.npmjs.com/package/react-player)
 - [JWT](https://www.npmjs.com/package/jwt)
 - more and more can be found at frontend/package.json and backend/package.json files.
+
+## API Document
+
+## Features
+
+### Authentication
+
+The Auth APIs enables you to manage all aspects of user identity. If offers endpoints so users can log in, sign up.
+
+#### Register & Login account
+
+Description: The Register and Login API lets user create an account if the email they entered is not registered yet in the database or performing authenticate if the account is registered.
+
+- **URL**: /v1/auth/login
+
+- **Method**: POST
+
+- **URL Params**: None
+
+- **Request Body**:
+
+```json
+{
+  "email": "example@email.com",
+  "password": "password"
+}
+```
+
+- **Success Response**:
+
+- Code: 201 or 200
+
+- Content:
+
+```json
+{
+  "token": "your token here"
+}
+```
+
+- **Error Response**:
+
+- Condition: There was a problem with the request. Check the request parameters and JSON format.
+
+- Code: 401
+
+- Content:
+
+```json
+{
+  "statusCode": 401,
+  "message": "Invalid email or password",
+  "error": "Unauthorized"
+}
+```
+
+#### Video Management
+
+#### Get all videos
+
+Description: Get videos in system and return a list of videos.
+
+- **URL**: /v1/video
+
+- **Method**: GET
+
+- **URL Params**: None
+
+- **Success Response**:
+
+- Code: 200
+
+- Content:
+
+```json
+[
+  {
+    "title": "Test2",
+    "description": "Test2",
+    "url": "https://www.youtube.com/watch?v=testing1234"
+  },
+  {
+    "title": "Test1",
+    "description": "Test1",
+    "url": "https://www.youtube.com/watch?v=testing123"
+  }
+]
+```
+
+#### Create a video
+
+- **URL**: /v1/video
+
+- **Method**: POST
+
+- **Request Headers**:
+
+```
+{ "Authorization" : "Bearer token" }
+```
+
+- **Success Response**:
+
+- Code: 200
+
+- Content:
+
+```json
+{
+  "title": "Test3",
+  "description": "test3",
+  "url": "https://www.youtube.com/watch?v=Test3",
+  "user": "645f4102ee701bd6de3b6a74",
+  "_id": "645f44e6ee701bd6de3b6a7c",
+  "createdAt": "2025-02-12T08:05:58.197Z",
+  "updatedAt": "2025-02-12T08:05:58.197Z",
+  "__v": 0
+}
+```
+
+- **Error Response**:
+
+- Code: 401
+
+- Content:
+
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized"
+}
+```
