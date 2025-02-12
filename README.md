@@ -111,3 +111,17 @@ yarn test:e2e
 ```
 
 ![Integration tests](https://i.imgur.com/mcCTZky.png)
+
+## Environment Variables
+
+### Backend
+
+- `DB_URI`: MongoDB connection URI.
+- `JWT_SECRET`: Secret key for generating authentication tokens.
+- `JWT_EXPIRES`: Expiration time for JWT tokens.
+- `PORT`: Server port for development or testing.
+
+### Frontend
+
+- `VITE_API_URL`: API URL of the backend service.
+- `VITE_API_WS_URL`: API URL of the backend WebSocket service.
