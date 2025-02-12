@@ -188,17 +188,22 @@ Your app should now be running on `http://localhost:<your-port>`.
 
 ### Backend (Heroku)
 
-After you commit your changes to git, you can deploy your app to `Heroku`
+To deploy your app to Heroku, follow these steps:
+
+1. Commit your changes to git
+2. Log in to Heroku
+3. Create a new Heroku app
+4. Deploy your code
 
 ```bash
 git add .
-git commit -m "Something"
+git commit -m "Your commit message"
 heroku login
 heroku create
 git push heroku master
 ```
 
-To open the app in your browser, type:
+To view your app in the browser, run:
 
 ```bash
 heroku open
@@ -206,18 +211,18 @@ heroku open
 
 ### Frontend (Vercel)
 
-- [Vercel CLI](https://vercel.com/docs/cli)
+First, install the [Vercel CLI](https://vercel.com/docs/cli)
 
-Run the following command:
+Then deploy using one of these commands:
 
-#### For preview
+#### For preview deployment
 
 ```bash
 cd frontend
 vercel .
 ```
 
-#### For production
+#### For production deployment
 
 ```bash
 cd frontend
