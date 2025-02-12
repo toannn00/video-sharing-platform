@@ -6,6 +6,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { YoutubeService } from '../../youtube/service/youtube.service';
 import { NotificationGateway } from '../../notification/notification.gateway';
 
+interface VideoResponse {
+  video: Video | null;
+  status: {
+    code: number;
+    message: string;
+  };
+}
+
 @Injectable()
 export class VideoService {
   private readonly logger = new Logger(VideoService.name);
@@ -39,7 +47,7 @@ export class VideoService {
     }
   }
 
-  async create(video: Video, user: User): Promise<Video | null> {
+  async create(video: Video, user: User): Promise<VideoResponse> {
     try {
       let videoData = {
         ...video,
@@ -52,15 +60,47 @@ export class VideoService {
           const videoDetails = await this.youtubeService.getVideoDetails(
             video.url,
           );
-          if (videoDetails) {
-            videoData = {
-              ...videoData,
-              title: video.title || videoDetails.title,
-              description: video.description || videoDetails.description,
+
+          if (!videoDetails) {
+            this.logger.warn('Failed to fetch video details from YouTube');
+            return {
+              video: null,
+              status: {
+                code: 422,
+                message: 'Failed to fetch video details from YouTube',
+              },
             };
           }
+
+          videoData = {
+            ...videoData,
+            title: video.title || videoDetails.title,
+            description: video.description || videoDetails.description,
+          };
+
+          const createdVideo = await this.videoModel.create(videoData);
+
+          this.notificationGateway.handleMessage({
+            title: createdVideo.title,
+            email: user.email,
+          });
+
+          return {
+            video: createdVideo,
+            status: {
+              code: 201,
+              message: 'Video created successfully',
+            },
+          };
         } catch (youtubeError) {
           this.logger.warn('Error fetching YouTube details:', youtubeError);
+          return {
+            video: null,
+            status: {
+              code: 422,
+              message: 'Error fetching YouTube video details',
+            },
+          };
         }
       }
 
@@ -71,10 +111,22 @@ export class VideoService {
         email: user.email,
       });
 
-      return createdVideo;
+      return {
+        video: createdVideo,
+        status: {
+          code: 201,
+          message: 'Video created successfully',
+        },
+      };
     } catch (error) {
       this.logger.error('Error creating video:', error);
-      return null;
+      return {
+        video: null,
+        status: {
+          code: 500,
+          message: 'Internal server error while creating video',
+        },
+      };
     }
   }
 }
