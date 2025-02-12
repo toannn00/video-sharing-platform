@@ -90,7 +90,7 @@ cd backend
 yarn test
 ```
 
-<img src="https://i.imgur.com/ofRueGd.png" width="300" />
+<img src="https://i.imgur.com/ofRueGd.png" width="600" />
 
 - Frontend
 
@@ -99,7 +99,7 @@ cd frontend
 yarn test
 ```
 
-<img src="https://i.imgur.com/gJuNusO.png" width="300" />
+<img src="https://i.imgur.com/gJuNusO.png" width="600" />
 
 ### Integration tests/e2e tests
 
@@ -110,11 +110,11 @@ cd backend
 yarn test:e2e
 ```
 
-<img src="https://i.imgur.com/mcCTZky.png" width="300" />
+<img src="https://i.imgur.com/mcCTZky.png" width="600" />
 
 ### GitHub Actions
 
-<img src="https://i.imgur.com/W7pTI1o.png" width="300" />
+<img src="https://i.imgur.com/W7pTI1o.png" width="600" />
 
 ## Environment Variables
 
@@ -156,4 +156,70 @@ docker-compose up --build
 
 Once the containers are built and running, they will be displayed as shown below:
 
-<img src="https://i.imgur.com/B62ODe0.png" width="300" />
+<img src="https://i.imgur.com/B62ODe0.png" width="600" />
+
+## Heroku Deployment
+
+### Prerequisites
+
+- [Heroku account](https://signup.heroku.com/)
+- [Heroku CLI](https://cli.heroku.com/)
+
+### Overview
+
+`Heroku Node.js` support will only be applied when the application has a `package.json` file in the root directory
+
+### Build the app and run it locally
+
+```bash
+cd backend
+heroku local web
+```
+
+Start your app locally using the `heroku local` command, which is installed as part of the `Heroku CLI`
+
+```bash
+heroku local web
+```
+
+Your app should now be running on `http://localhost:<your-port>`.
+
+## Deploy the application
+
+### Backend (Heroku)
+
+After you commit your changes to git, you can deploy your app to `Heroku`
+
+```bash
+git add .
+git commit -m "Something"
+heroku login
+heroku create
+git push heroku master
+```
+
+To open the app in your browser, type:
+
+```bash
+heroku open
+```
+
+### Frontend (Vercel)
+
+- [Vercel CLI](https://vercel.com/docs/cli)
+
+Run the following command:
+
+#### For preview
+
+```bash
+cd frontend
+vercel .
+```
+
+#### For production
+
+```bash
+cd frontend
+vercel . --prod
+```
