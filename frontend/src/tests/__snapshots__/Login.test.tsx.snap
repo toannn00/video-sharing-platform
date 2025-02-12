@@ -104,11 +104,12 @@ exports[`Login > should render and match the snapshot 1`] = `
         }
       >
         <Button
+          block={false}
           htmlType="submit"
+          loading={false}
           style={
             {
               "backgroundColor": "black",
-              "width": "auto",
             }
           }
           type="primary"
