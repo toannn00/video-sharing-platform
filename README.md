@@ -223,3 +223,15 @@ vercel .
 cd frontend
 vercel . --prod
 ```
+
+## Notable Packages
+
+- [Nest.js](https://docs.nestjs.com/)
+- [Socket.io](https://socket.io/docs/v4/)
+- [Vite.js](https://www.npmjs.com/package/vite)
+- [Ant Design](https://www.npmjs.com/package/antd)
+- [Mongoose](https://www.npmjs.com/package/mongoose)
+- [Axios](https://www.npmjs.com/package/axios)
+- [ReactPlayer](https://www.npmjs.com/package/react-player)
+- [JWT](https://www.npmjs.com/package/jwt)
+- more and more can be found at frontend/package.json and backend/package.json files.
