@@ -76,10 +76,10 @@ export const Post = () => {
         name="title"
         rules={[{ required: true, message: "Input a video title" }]}
       >
-        <Input />
+        <Input style={{ fontSize: "16px" }} />
       </Form.Item>
       <Form.Item
-        label="Youtube URL"
+        label="YouTube URL"
         name="url"
         rules={[
           { required: true, message: "Input valid YouTube URL" },
@@ -95,14 +95,14 @@ export const Post = () => {
           },
         ]}
       >
-        <Input />
+        <Input style={{ fontSize: "16px" }} />
       </Form.Item>
       <Form.Item
         label="Description"
         name="description"
         rules={[{ required: true, message: "Input valid YouTube description" }]}
       >
-        <Input.TextArea />
+        <Input.TextArea style={{ fontSize: "16px" }} />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 24 }}>

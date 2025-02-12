@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 
 export const Login = () => {
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -18,14 +19,21 @@ export const Login = () => {
   };
 
   const handleLogin = async (values: User) => {
-    const res = await authService.login({
-      email: values.email,
-      password: values.password,
-    });
+    setLoading(true);
+    try {
+      const res = await authService.login({
+        email: values.email,
+        password: values.password,
+      });
 
-    if (res) {
-      setEmail(values.email);
-      window.dispatchEvent(new Event("authChange"));
+      if (res) {
+        setEmail(values.email);
+        window.dispatchEvent(new Event("authChange"));
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -106,12 +114,11 @@ export const Login = () => {
         <Col span={getButtonSpan()}>
           <Form.Item style={{ marginBottom: 0 }}>
             <Button
-              style={{
-                backgroundColor: "black",
-                width: isMobile ? "100%" : "auto",
-              }}
-              type="primary"
+              style={{ backgroundColor: "black" }}
               htmlType="submit"
+              type="primary"
+              loading={loading}
+              block={isMobile}
             >
               Login/Register
             </Button>
