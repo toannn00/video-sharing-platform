@@ -29,16 +29,20 @@ export const Post = () => {
   }, [setSocket]);
 
   const onFinish = async (values: Video) => {
-    const result = await videoService.create(values, token);
-    const email = localStorage.getItem("email") || "";
+    setLoading(true);
+    try {
+      const result = await videoService.create(values, token);
+      const email = localStorage.getItem("email") || "";
 
-    if (result) {
-      form.resetFields();
-      const notificationMessage = `New video ${values.title} uploaded by ${email}`;
-      triggerMessage({ message: notificationMessage, email });
-      setLoading(true);
-      back();
-    } else {
+      if (result) {
+        form.resetFields();
+        const notificationMessage = `New video ${values.title} uploaded by ${email}`;
+        triggerMessage({ message: notificationMessage, email });
+        back();
+      }
+    } catch (error) {
+      console.error("Error posting video:", error);
+    } finally {
       setLoading(false);
     }
   };

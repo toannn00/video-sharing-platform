@@ -1,10 +1,16 @@
 import { useMemo } from "react";
 import Video from "../../types/video.type";
-import { Empty } from "antd";
+import { Empty, Spin } from "antd";
 import VideoItem from "../VideoItem";
 import { useMediaQuery } from "react-responsive";
 
-export const VideoList = ({ videoList }: { videoList: Video[] }) => {
+export const VideoList = ({
+  videoList,
+  loading,
+}: {
+  videoList: Video[];
+  loading: boolean;
+}) => {
   const isMobile = useMediaQuery({ maxWidth: 1280 });
 
   const containerStyle = useMemo(
@@ -18,7 +24,9 @@ export const VideoList = ({ videoList }: { videoList: Video[] }) => {
 
   return (
     <div style={containerStyle}>
-      {videoList.length > 0 ? (
+      {loading ? (
+        <Spin size="large" />
+      ) : videoList.length > 0 ? (
         videoList.map((video, index) => (
           <VideoItem key={`${video.url}-${index}`} video={video} />
         ))
