@@ -188,17 +188,22 @@ Your app should now be running on `http://localhost:<your-port>`.
 
 ### Backend (Heroku)
 
-After you commit your changes to git, you can deploy your app to `Heroku`
+To deploy your app to Heroku, follow these steps:
+
+1. Commit your changes to git
+2. Log in to Heroku
+3. Create a new Heroku app
+4. Deploy your code
 
 ```bash
 git add .
-git commit -m "Something"
+git commit -m "Your commit message"
 heroku login
 heroku create
 git push heroku master
 ```
 
-To open the app in your browser, type:
+To view your app in the browser, run:
 
 ```bash
 heroku open
@@ -206,18 +211,18 @@ heroku open
 
 ### Frontend (Vercel)
 
-- [Vercel CLI](https://vercel.com/docs/cli)
+First, install the [Vercel CLI](https://vercel.com/docs/cli)
 
-Run the following command:
+Then deploy using one of these commands:
 
-#### For preview
+#### For preview deployment
 
 ```bash
 cd frontend
 vercel .
 ```
 
-#### For production
+#### For production deployment
 
 ```bash
 cd frontend
@@ -367,3 +372,35 @@ Description: Get videos in system and return a list of videos.
   "error": "Unauthorized"
 }
 ```
+
+## Usage
+
+### Homepage
+
+The homepage displays a list of YouTube videos shared by users. New users can register or existing users can log in using their email and password through the login form.
+
+<img src="https://i.imgur.com/WbfwojY.png" width="600" />
+
+### Logged In Experience
+
+Once logged in, you'll see:
+
+- Your email address in the header
+- A "Post" button to share new videos
+- A "Logout" button to sign out
+
+<img src="https://i.imgur.com/4dhyPIp.jpeg" width="600" />
+
+### Sharing a Video
+
+1. Click the "Post" button to access the video submission form
+
+<img src="https://i.imgur.com/jc1PpVU.png" width="600" />
+
+2. Fill in the video details and click "Post"
+
+<img src="https://i.imgur.com/ziQKs73.png" width="600" />
+
+3. You'll be redirected to the homepage where your newly shared video will appear
+
+<img src="https://i.imgur.com/MMKb2q3.png" width="600" />
