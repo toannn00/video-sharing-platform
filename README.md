@@ -112,6 +112,10 @@ yarn test:e2e
 
 ![Integration tests](https://i.imgur.com/mcCTZky.png)
 
+### GitHub Actions
+
+![GitHub Actions](https://i.imgur.com/W7pTI1o.png)
+
 ## Environment Variables
 
 ### Backend
