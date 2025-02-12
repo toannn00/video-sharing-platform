@@ -37,14 +37,14 @@ cd video-sharing-platform
 
 - Install the required packages via Yarn:
 
-For backend:
+- Backend
 
 ```bash
 cd backend
 yarn install
 ```
 
-For frontend:
+- Frontend
 
 ```bash
 cd frontend
@@ -62,3 +62,19 @@ mongod
 ```
 
 This will launch the MongoDB server, which should now be running on your local machine.
+
+## Running the Application for Development
+
+- Frontend
+
+```bash
+cd frontend
+yarn dev
+```
+
+- Backend
+
+```bash
+cd backend
+yarn dev
+```
