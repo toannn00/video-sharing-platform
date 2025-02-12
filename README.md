@@ -129,3 +129,31 @@ yarn test:e2e
 
 - `VITE_API_URL`: API URL of the backend service.
 - `VITE_API_WS_URL`: API URL of the backend WebSocket service.
+
+## Docker Deployment
+
+First, install [Docker Desktop](https://www.docker.com/products/docker-desktop) on your device. Verify the installation by running the following command:
+
+```bash
+docker --version
+```
+
+Next, locate the docker-compose.yml file in the root directory of the project. Then, open a terminal folder and run:
+
+- Backend
+
+```bash
+cd backend
+docker-compose up --build
+```
+
+- Frontend
+
+```bash
+cd frontend
+docker-compose up --build
+```
+
+Once the containers are built and running, they will be displayed as shown below:
+
+![Docker](https://i.imgur.com/B62ODe0.png)
