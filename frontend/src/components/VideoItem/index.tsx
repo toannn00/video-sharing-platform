@@ -30,7 +30,7 @@ export const VideoItem = ({ video }: { video: Video }) => {
           height={240}
           url={url}
           light={true}
-          playing={false}
+          playing={true}
         />
       </Suspense>
     );
