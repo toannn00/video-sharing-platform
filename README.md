@@ -90,7 +90,7 @@ cd backend
 yarn test
 ```
 
-<img src="https://i.imgur.com/ofRueGd.png" width="600" />
+<img src="https://i.imgur.com/CeVAduv.png" width="600" />
 
 - Frontend
 
@@ -395,11 +395,11 @@ Once logged in, you'll see:
 
 1. Click the "Post" button to access the video submission form
 
-<img src="https://i.imgur.com/jc1PpVU.png" width="600" />
+<img src="https://i.imgur.com/xizmCcR.png" width="600" />
 
 2. Fill in the video details and click "Post"
 
-<img src="https://i.imgur.com/ziQKs73.png" width="600" />
+<img src="https://i.imgur.com/7hN9kRO.png" width="600" />
 
 3. You'll be redirected to the homepage where your newly shared video will appear
 
