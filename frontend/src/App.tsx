@@ -9,6 +9,11 @@ import { io } from "socket.io-client";
 import { message } from "antd";
 import { useAuth } from "./hooks/useAuth";
 
+interface VideoNotification {
+  title: string;
+  email: string;
+}
+
 function App() {
   const [socket, setSocket] = useState<Socket>();
   const { email, token } = useAuth();
@@ -23,9 +28,11 @@ function App() {
   }, []);
 
   const messageListener = useCallback(
-    (notification: { message: string; email: string }) => {
+    (notification: VideoNotification) => {
       if (token && notification.email !== email) {
-        message.info(notification.message);
+        message.info(
+          `New video shared: ${notification.title} by ${notification.email}`
+        );
       }
     },
     [token, email]

@@ -1,13 +1,22 @@
-import { IsEmpty, IsNotEmpty, IsString, Matches } from 'class-validator';
+import {
+  IsEmpty,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+} from 'class-validator';
+import { Transform } from 'class-transformer';
 import { User } from '../../auth/schema/user.schema';
 
 export class VideoDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
+  @Transform(({ value }) => value || '')
   readonly title: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
+  @Transform(({ value }) => value || '')
   readonly description: string;
 
   @IsNotEmpty()

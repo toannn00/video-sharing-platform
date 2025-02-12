@@ -5,12 +5,18 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 
+interface VideoNotification {
+  title: string;
+  email: string;
+}
+
 @WebSocketGateway({ cors: '*' })
 export class NotificationGateway {
   @WebSocketServer()
   server;
+
   @SubscribeMessage('newVideoNotification')
-  handleMessage(@MessageBody() message: string): void {
-    this.server.emit('newVideoNotification', message);
+  handleMessage(@MessageBody() notification: VideoNotification): void {
+    this.server.emit('newVideoNotification', notification);
   }
 }
