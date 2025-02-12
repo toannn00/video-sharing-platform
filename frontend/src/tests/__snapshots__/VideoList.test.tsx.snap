@@ -14,3 +14,19 @@ exports[`VideoItem > should render and match the snapshot 1`] = `
   }
 />
 `;
+
+exports[`VideoList > should render and match the snapshot 1`] = `
+<VideoList
+  loading={false}
+  videoList={
+    [
+      {
+        "description": "test",
+        "email": "test@gmail.com",
+        "title": "test",
+        "url": "test",
+      },
+    ]
+  }
+/>
+`;
