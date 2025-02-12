@@ -372,3 +372,35 @@ Description: Get videos in system and return a list of videos.
   "error": "Unauthorized"
 }
 ```
+
+## Usage
+
+### Homepage
+
+The homepage displays a list of YouTube videos shared by users. New users can register or existing users can log in using their email and password through the login form.
+
+<img src="https://i.imgur.com/WbfwojY.png" width="600" />
+
+### Logged In Experience
+
+Once logged in, you'll see:
+
+- Your email address in the header
+- A "Post" button to share new videos
+- A "Logout" button to sign out
+
+<img src="https://i.imgur.com/4dhyPIp.jpeg" width="600" />
+
+### Sharing a Video
+
+1. Click the "Post" button to access the video submission form
+
+<img src="https://i.imgur.com/jc1PpVU.png" width="600" />
+
+2. Fill in the video details and click "Post"
+
+<img src="https://i.imgur.com/ziQKs73.png" width="600" />
+
+3. You'll be redirected to the homepage where your newly shared video will appear
+
+<img src="https://i.imgur.com/MMKb2q3.png" width="600" />
