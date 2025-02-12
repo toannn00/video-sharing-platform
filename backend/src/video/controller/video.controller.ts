@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, Post, Req, UseGuards } from '@nestjs/common';
 import { VideoService } from '../service/video.service';
 import { Video } from '../schema/video.schema';
 import { VideoDto } from '../dto/video.dto';
@@ -16,6 +16,10 @@ export class VideoController {
   @Post()
   @UseGuards(AuthGuard())
   async createVideo(@Body() video: VideoDto, @Req() req): Promise<Video> {
-    return this.videoService.create(video, req.user);
+    const response = await this.videoService.create(video, req.user);
+    if (!response.video) {
+      throw new HttpException(response.status.message, response.status.code);
+    }
+    return response.video;
   }
 }

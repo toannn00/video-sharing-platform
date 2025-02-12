@@ -52,6 +52,10 @@ export class YoutubeService {
           ),
       );
 
+      if (data.items && data.items.length === 0) {
+        return null;
+      }
+
       if (data.items && data.items.length > 0) {
         const videoDetails = data.items[0].snippet;
         return {

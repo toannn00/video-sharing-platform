@@ -24,11 +24,19 @@ describe('VideoController', () => {
 
   const mockVideos = [mockVideo];
 
+  const mockVideoResponse = {
+    video: mockVideo,
+    status: {
+      code: 201,
+      message: 'Video created successfully',
+    },
+  };
+
   const mockGuard: CanActivate = { canActivate: jest.fn(() => true) };
 
   let videoController: VideoController;
   const mockVideoService = {
-    create: jest.fn().mockResolvedValue(mockVideo),
+    create: jest.fn().mockResolvedValue(mockVideoResponse),
     findAll: jest.fn().mockResolvedValue(mockVideos),
   };
 

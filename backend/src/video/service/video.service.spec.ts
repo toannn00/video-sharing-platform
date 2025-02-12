@@ -99,7 +99,13 @@ describe('VideoService', () => {
     it('should create a new video with user data', async () => {
       const result = await videoService.create(mockVideo as Video, mockUser);
 
-      expect(result).toEqual(mockVideo);
+      expect(result).toEqual({
+        video: mockVideo,
+        status: {
+          code: 201,
+          message: 'Video created successfully',
+        },
+      });
       expect(mockVideoModel.create).toHaveBeenCalledWith({
         ...mockVideo,
         user: mockUser._id,
