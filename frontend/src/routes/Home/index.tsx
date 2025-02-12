@@ -6,10 +6,18 @@ import videoService from "../../services/video.service";
 
 export const Home = () => {
   const [videoList, setVideoList] = useState<Video[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const getVideos = async () => {
-    const data = (await videoService.getAll()) as Video[];
-    setVideoList(data);
+    setLoading(true);
+    try {
+      const data = await videoService.getAll();
+      setVideoList(data);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -18,7 +26,7 @@ export const Home = () => {
 
   return (
     <Layout>
-      <VideoList videoList={videoList} />
+      <VideoList videoList={videoList} loading={loading} />
     </Layout>
   );
 };

@@ -29,16 +29,20 @@ export const Post = () => {
   }, [setSocket]);
 
   const onFinish = async (values: Video) => {
-    const result = await videoService.create(values, token);
-    const email = localStorage.getItem("email") || "";
+    setLoading(true);
+    try {
+      const result = await videoService.create(values, token);
+      const email = localStorage.getItem("email") || "";
 
-    if (result) {
-      form.resetFields();
-      const notificationMessage = `New video ${values.title} uploaded by ${email}`;
-      triggerMessage({ message: notificationMessage, email });
-      setLoading(true);
-      back();
-    } else {
+      if (result) {
+        form.resetFields();
+        const notificationMessage = `New video ${values.title} uploaded by ${email}`;
+        triggerMessage({ message: notificationMessage, email });
+        back();
+      }
+    } catch (error) {
+      console.error("Error posting video:", error);
+    } finally {
       setLoading(false);
     }
   };
@@ -80,8 +84,14 @@ export const Post = () => {
         rules={[
           { required: true, message: "Input valid YouTube URL" },
           {
-            pattern: new RegExp("^(https?://)?(www.youtube.com|youtu.be)/.+$"),
-            message: "Input a valid YouTube URL",
+            pattern: new RegExp(
+              "^https?://(www\\.youtube\\.com/watch\\?v=[\\w-]+|youtu\\.be/[\\w-]+)$"
+            ),
+            message:
+              "Input a valid YouTube URL (e.g., https://youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx)",
+          },
+          {
+            transform: (value: string) => value.trim(),
           },
         ]}
       >
