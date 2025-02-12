@@ -76,5 +76,38 @@ yarn dev
 
 ```bash
 cd backend
-yarn dev
+yarn start:dev
 ```
+
+## Testing
+
+### Unit tests
+
+- Backend
+
+```bash
+cd backend
+yarn test
+```
+
+![Unit tests](https://i.imgur.com/ofRueGd.png)
+
+- Frontend
+
+```bash
+cd frontend
+yarn test
+```
+
+![Unit tests](https://i.imgur.com/gJuNusO.png)
+
+### Integration tests/e2e tests
+
+- Backend
+
+```bash
+cd backend
+yarn test:e2e
+```
+
+![Integration tests](https://i.imgur.com/mcCTZky.png)
