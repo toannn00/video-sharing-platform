@@ -80,8 +80,14 @@ export const Post = () => {
         rules={[
           { required: true, message: "Input valid YouTube URL" },
           {
-            pattern: new RegExp("^(https?://)?(www.youtube.com|youtu.be)/.+$"),
-            message: "Input a valid YouTube URL",
+            pattern: new RegExp(
+              "^https?://(www\\.youtube\\.com/watch\\?v=[\\w-]+|youtu\\.be/[\\w-]+)$"
+            ),
+            message:
+              "Input a valid YouTube URL (e.g., https://youtube.com/watch?v=xxxxx or https://youtu.be/xxxxx)",
+          },
+          {
+            transform: (value: string) => value.trim(),
           },
         ]}
       >

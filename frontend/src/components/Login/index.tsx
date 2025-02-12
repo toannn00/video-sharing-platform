@@ -25,6 +25,7 @@ export const Login = () => {
 
     if (res) {
       setEmail(values.email);
+      window.dispatchEvent(new Event("authChange"));
     }
   };
 
