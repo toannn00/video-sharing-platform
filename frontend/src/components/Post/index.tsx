@@ -10,6 +10,7 @@ import videoService from "../../services/video.service";
 import Video from "../../types/video.type";
 import { useMediaQuery } from "react-responsive";
 import { io, Socket } from "socket.io-client";
+import youtubeService from "../../services/youtube.service";
 
 export const Post = () => {
   const [form] = Form.useForm();
@@ -27,6 +28,22 @@ export const Post = () => {
     const newSocket = io(import.meta.env.VITE_API_WS_URL);
     setSocket(newSocket);
   }, [setSocket]);
+
+  const handleUrlChange = async (url: string) => {
+    if (
+      url.match(
+        /^https?:\/\/(www\.youtube\.com\/watch\?v=[\w-]+|youtu\.be\/[\w-]+)$/
+      )
+    ) {
+      const details = await youtubeService.getVideoDetails(url);
+      if (details) {
+        form.setFieldsValue({
+          title: details.title,
+          description: details.description,
+        });
+      }
+    }
+  };
 
   const onFinish = async (values: Video) => {
     setLoading(true);
@@ -95,7 +112,10 @@ export const Post = () => {
           },
         ]}
       >
-        <Input style={{ fontSize: "16px" }} />
+        <Input
+          style={{ fontSize: "16px" }}
+          onChange={(e) => handleUrlChange(e.target.value)}
+        />
       </Form.Item>
       <Form.Item
         label="Description"
