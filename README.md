@@ -90,7 +90,7 @@ cd backend
 yarn test
 ```
 
-![Unit tests](https://i.imgur.com/ofRueGd.png)
+![Unit tests](https://i.imgur.com/ofRueGd.png){width=420px}
 
 - Frontend
 
@@ -99,7 +99,7 @@ cd frontend
 yarn test
 ```
 
-![Unit tests](https://i.imgur.com/gJuNusO.png)
+![Unit tests](https://i.imgur.com/gJuNusO.png){width=420px}
 
 ### Integration tests/e2e tests
 
@@ -110,11 +110,11 @@ cd backend
 yarn test:e2e
 ```
 
-![Integration tests](https://i.imgur.com/mcCTZky.png)
+![Integration tests](https://i.imgur.com/mcCTZky.png){width=420px}
 
 ### GitHub Actions
 
-![GitHub Actions](https://i.imgur.com/W7pTI1o.png)
+![GitHub Actions](https://i.imgur.com/W7pTI1o.png){width=420px}
 
 ## Environment Variables
 
@@ -156,4 +156,4 @@ docker-compose up --build
 
 Once the containers are built and running, they will be displayed as shown below:
 
-![Docker](https://i.imgur.com/B62ODe0.png)
+![Docker](https://i.imgur.com/B62ODe0.png){width=420px}
