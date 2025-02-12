@@ -25,3 +25,40 @@ Video Sharing Platform, written in TypeScript, is designed to make sharing YouTu
 - [MongoDB](https://www.mongodb.com/download-center/community)
 - [Git](https://git-scm.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+## Installation & Configuration
+
+To start using Video Sharing, clone the repository:
+
+```bash
+git clone https://github.com/toannn00/video-sharing-platform.git
+cd video-sharing-platform
+```
+
+- Install the required packages via Yarn:
+
+For backend:
+
+```bash
+cd backend
+yarn install
+```
+
+For frontend:
+
+```bash
+cd frontend
+yarn install
+```
+
+## **Database Setup**
+
+Download and install [MongoDB](https://www.mongodb.com/download-center/community). Once the download is complete, double-click the file to begin the installation.
+
+Follow the prompts to install MongoDB, keeping the default settings for most options. Once installed, start the MongoDB server by running the following command in a terminal or command prompt:
+
+```bash
+mongod
+```
+
+This will launch the MongoDB server, which should now be running on your local machine.
