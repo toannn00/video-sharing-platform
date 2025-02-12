@@ -404,3 +404,25 @@ Once logged in, you'll see:
 3. You'll be redirected to the homepage where your newly shared video will appear
 
 <img src="https://i.imgur.com/MMKb2q3.png" width="600" />
+
+### Notification System
+
+When a user shares a new video, all connected users receive a real-time notification through WebSocket, informing them about the new upload.
+
+<img src="https://i.imgur.com/sMReBqB.png" width="600" />
+
+## Troubleshooting
+
+### Unable to connect MongoDB using @nestjs/mongoose locally
+
+If you're having trouble connecting to MongoDB locally, try changing the DB_URI in your environment variables:
+
+- From: `mongodb://localhost:27017`
+- To: `mongodb://127.0.0.1:27017`
+
+### Unable to connect MongoDB using Docker
+
+If you're having trouble connecting to MongoDB using Docker, try changing the DB_URI in your environment variables:
+
+- From: `mongodb://localhost:27017`
+- To: `mongodb://mongodb:27017`
