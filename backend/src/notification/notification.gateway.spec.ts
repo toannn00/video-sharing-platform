@@ -16,14 +16,20 @@ describe('NotificationGateway', () => {
     expect(gateway).toBeDefined();
   });
 
-  it('should emit newVideoNotification event with the correct message', () => {
-    const testMessage = 'Test Notification';
+  it('should emit newVideoNotification event with the correct notification data', () => {
+    const testNotification = {
+      title: 'Test Video',
+      email: 'test@example.com',
+    };
     const mockEmit = jest.fn();
 
     gateway.server = { emit: mockEmit };
 
-    gateway.handleMessage(testMessage);
+    gateway.handleMessage(testNotification);
 
-    expect(mockEmit).toHaveBeenCalledWith('newVideoNotification', testMessage);
+    expect(mockEmit).toHaveBeenCalledWith(
+      'newVideoNotification',
+      testNotification,
+    );
   });
 });

@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { VideoModule } from './video/video.module';
 import { AuthModule } from './auth/auth.module';
 import { NotificationGateway } from './notification/notification.gateway';
+import { YoutubeModule } from './youtube/youtube.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { NotificationGateway } from './notification/notification.gateway';
     MongooseModule.forRoot(process.env.DB_URI),
     VideoModule,
     AuthModule,
+    YoutubeModule,
   ],
   controllers: [AppController],
   providers: [AppService, NotificationGateway],

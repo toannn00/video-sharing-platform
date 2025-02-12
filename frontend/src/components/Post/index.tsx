@@ -5,11 +5,10 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import videoService from "../../services/video.service";
 import Video from "../../types/video.type";
 import { useMediaQuery } from "react-responsive";
-import { io, Socket } from "socket.io-client";
 
 export const Post = () => {
   const [form] = Form.useForm();
@@ -17,27 +16,14 @@ export const Post = () => {
   const [token] = useState(localStorage.getItem("token") || "");
   const [loading, setLoading] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [socket, setSocket] = useState<Socket>();
-
-  const triggerMessage = (values: { message: string; email: string }) => {
-    socket?.emit("newVideoNotification", values);
-  };
-
-  useEffect(() => {
-    const newSocket = io(import.meta.env.VITE_API_WS_URL);
-    setSocket(newSocket);
-  }, [setSocket]);
 
   const onFinish = async (values: Video) => {
     setLoading(true);
     try {
       const result = await videoService.create(values, token);
-      const email = localStorage.getItem("email") || "";
 
       if (result) {
         form.resetFields();
-        const notificationMessage = `New video ${values.title} uploaded by ${email}`;
-        triggerMessage({ message: notificationMessage, email });
         back();
       }
     } catch (error) {
@@ -71,13 +57,13 @@ export const Post = () => {
       labelAlign={isMobile ? "left" : "right"}
       layout={isMobile ? "vertical" : "horizontal"}
     >
-      <Form.Item
+      {/* <Form.Item
         label="Video Title"
         name="title"
-        rules={[{ required: true, message: "Input a video title" }]}
+        rules={[{ required: false, message: "Input a video title" }]}
       >
         <Input style={{ fontSize: "16px" }} />
-      </Form.Item>
+      </Form.Item> */}
       <Form.Item
         label="YouTube URL"
         name="url"
@@ -97,13 +83,15 @@ export const Post = () => {
       >
         <Input style={{ fontSize: "16px" }} />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         label="Description"
         name="description"
-        rules={[{ required: true, message: "Input valid YouTube description" }]}
+        rules={[
+          { required: false, message: "Input valid YouTube description" },
+        ]}
       >
         <Input.TextArea style={{ fontSize: "16px" }} />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item wrapperCol={{ span: 24 }}>
         <div

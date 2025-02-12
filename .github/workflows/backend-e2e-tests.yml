@@ -35,3 +35,4 @@ jobs:
           DB_URI: ${{ secrets.MONGODB_ATLAS_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           JWT_EXPIRES: ${{ secrets.JWT_EXPIRES }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
